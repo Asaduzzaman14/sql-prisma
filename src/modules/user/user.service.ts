@@ -34,7 +34,13 @@ const insertOrUpate = async (data: Profile) => {
   return result;
 };
 
+const getAllUsers = async () => {
+  const result = await prisma.user.findMany({});
+  return result;
+};
+
 export const UserService = {
   insertInToDb,
   insertOrUpate,
+  getAllUsers,
 };

@@ -29,7 +29,21 @@ const inserOrUpdate = async (req: Request, res: Response) => {
   }
 };
 
+const getUsers = async (req: Request, res: Response) => {
+  try {
+    const result = await UserService.getAllUsers();
+    res.send({
+      success: true,
+      message: "All Users",
+      data: result,
+    });
+  } catch (error) {
+    res.send(error);
+  }
+};
+
 export const UserController = {
   insertInToDb,
   inserOrUpdate,
+  getUsers,
 };
