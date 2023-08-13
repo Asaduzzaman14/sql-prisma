@@ -42,8 +42,23 @@ const getUsers = async (req: Request, res: Response) => {
   }
 };
 
+const getUser = async (req: Request, res: Response) => {
+  try {
+    const id = req?.params.id;
+    const result = await UserService.getUserById(parseInt(id));
+    res.send({
+      success: true,
+      message: "User by id",
+      data: result,
+    });
+  } catch (error) {
+    res.send(error);
+  }
+};
+
 export const UserController = {
   insertInToDb,
   inserOrUpdate,
   getUsers,
+  getUser,
 };

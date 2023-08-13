@@ -35,7 +35,25 @@ const insertOrUpate = async (data: Profile) => {
 };
 
 const getAllUsers = async () => {
-  const result = await prisma.user.findMany({});
+  const result = await prisma.user.findMany({
+    // select: {
+    //   email: true,
+    //   name:true
+    // },
+    include: {
+      profile: true,
+    },
+  });
+  return result;
+};
+
+const getUserById = async (id: number) => {
+  const result = await prisma.user.findUnique({
+    where: { id },
+    include: {
+      profile: true,
+    },
+  });
   return result;
 };
 
@@ -43,4 +61,5 @@ export const UserService = {
   insertInToDb,
   insertOrUpate,
   getAllUsers,
+  getUserById,
 };
