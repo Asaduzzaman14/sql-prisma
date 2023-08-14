@@ -5,4 +5,6 @@ const router = express.Router();
 
 router.post("/create-post", PostController.insertInToDb);
 
+router.get("/get-post", PostController.getAllPost);
+
 export const PostRoutes = router;
