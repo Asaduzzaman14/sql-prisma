@@ -35,17 +35,23 @@ const insertOrUpate = async (data: Profile) => {
 };
 
 const getAllUsers = async () => {
-  const result = await prisma.user.findMany({
-    // select: {
-    //   email: true,
-    //   name:true
-    // },
-    include: {
-      profile: true,
-    },
-  });
+  const result = await prisma.$queryRaw`select * from users`;
+
   return result;
 };
+
+// const getAllUsers = async () => {
+//   const result = await prisma.user.findMany({
+//     // select: {
+//     //   email: true,
+//     //   name:true
+//     // },
+//     include: {
+//       profile: true,
+//     },
+//   });
+//   return result;
+// };
 
 const getUserById = async (id: number) => {
   const result = await prisma.user.findUnique({
